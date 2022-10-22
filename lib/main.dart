@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/services/user_services.dart';
 import 'package:get/get.dart';
 
 import 'routes/app_pages.dart';
@@ -6,6 +7,8 @@ import 'routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Get.put(UserServices());
+
   runApp(const MyApp());
 }
 
