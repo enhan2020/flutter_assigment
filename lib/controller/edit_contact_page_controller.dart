@@ -33,6 +33,8 @@ class EditContactPageController extends GetxController {
       final userModelList = _contactsListPageController.userModel!.map((e) {
         if (e?.id == _argument!.user?.id) {
           return UserModel(id: e?.id ?? '', firstName: firstName.text, lastName: lastName.text, email: email.text, phone: phone.text);
+        } else {
+          return e;
         }
       }).toList();
 
