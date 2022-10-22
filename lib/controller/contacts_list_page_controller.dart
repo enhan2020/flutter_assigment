@@ -4,8 +4,17 @@ import 'package:get/get.dart';
 
 class ContactsListPageController extends GetxController {
   UserServices get _userServices => Get.find<UserServices>();
-
   List<UserModel>? userModel;
+
+  List<UserModel>? get filteredUserModel {
+    if (searchValue.isEmpty) return userModel;
+    return userModel?.where((element) {
+      final username = "${element.firstName.toLowerCase()} ${element.lastName.toLowerCase()}";
+      return (username).contains(searchValue.toLowerCase());
+    }).toList();
+  }
+
+  String searchValue = "";
 
   @override
   void onInit() async {
@@ -21,6 +30,11 @@ class ContactsListPageController extends GetxController {
 
   updateList() async {
     userModel = await _userServices.getDataFromLocal();
+    update();
+  }
+
+  setSearchValue(String value) {
+    searchValue = value;
     update();
   }
 }

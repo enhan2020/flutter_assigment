@@ -17,9 +17,18 @@ class ContactsListPage extends StatelessWidget {
             centerTitle: true,
             title: const Text("Contacts", style: TextStyle(color: Colors.black)),
             backgroundColor: Colors.white70,
-            leading: Icon(
-              Icons.search,
-              color: Theme.of(context).primaryColor,
+            leading: InkWell(
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => SearchDialog(
+                  onSearch: (value) => controller.setSearchValue(value),
+                  initialValue: controller.searchValue,
+                ),
+              ),
+              child: Icon(
+                Icons.search,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
             actions: [
               InkWell(
@@ -34,9 +43,9 @@ class ContactsListPage extends StatelessWidget {
           body: RefreshIndicator(
             onRefresh: () => controller.onRefresh(),
             child: ListView.builder(
-              itemCount: controller.userModel?.length ?? 0,
+              itemCount: controller.filteredUserModel?.length ?? 0,
               itemBuilder: (context, index) {
-                return ContactItem(user: controller.userModel![index]);
+                return ContactItem(user: controller.filteredUserModel![index]);
               },
             ),
           ),
@@ -69,6 +78,57 @@ class ContactItem extends StatelessWidget {
               ],
             ),
             const Divider(thickness: 1),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SearchDialog extends StatefulWidget {
+  final String initialValue;
+  final Function(String) onSearch;
+
+  const SearchDialog({Key? key, required this.onSearch, required this.initialValue}) : super(key: key);
+
+  @override
+  State<SearchDialog> createState() => _SearchDialogState();
+}
+
+class _SearchDialogState extends State<SearchDialog> {
+  TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    searchController.text = widget.initialValue;
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("Search"),
+            TextFormField(
+              controller: searchController,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                widget.onSearch.call(searchController.text);
+                Navigator.of(context).pop();
+              },
+              child: const Text("Search"),
+            ),
           ],
         ),
       ),
