@@ -61,7 +61,7 @@ class EditContactPage extends StatelessWidget {
                         ),
                       ),
                       validator: (value) {
-                        if (value?.isKEmpty == true) {
+                        if (value?.isEmpty == true) {
                           return "value cannot be empty";
                         }
                         return null;
