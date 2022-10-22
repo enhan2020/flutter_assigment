@@ -60,6 +60,12 @@ class EditContactPage extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.grey),
                         ),
                       ),
+                      validator: (value) {
+                        if (value?.isKEmpty == true) {
+                          return "value cannot be empty";
+                        }
+                        return null;
+                      },
                     ),
                   ),
                 ],
@@ -73,12 +79,18 @@ class EditContactPage extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
-                      controller: controller.firstName,
+                      controller: controller.lastName,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                         ),
                       ),
+                      validator: (value) {
+                        if (value?.isEmpty == true) {
+                          return "value cannot be empty";
+                        }
+                        return null;
+                      },
                     ),
                   ),
                 ],
@@ -100,7 +112,7 @@ class EditContactPage extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
-                      controller: controller.firstName,
+                      controller: controller.email,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -119,7 +131,7 @@ class EditContactPage extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
-                      controller: controller.firstName,
+                      controller: controller.phone,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),

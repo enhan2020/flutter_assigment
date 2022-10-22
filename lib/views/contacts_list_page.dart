@@ -29,9 +29,9 @@ class ContactsListPage extends StatelessWidget {
             ],
           ),
           body: ListView.builder(
-            itemCount: controller.userModel.length,
+            itemCount: controller.userModel!.length,
             itemBuilder: (context, index) {
-              return ContactItem(user: controller.userModel[index]);
+              return ContactItem(user: controller.userModel![index]);
             },
           ),
         );

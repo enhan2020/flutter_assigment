@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 class ContactsListPageController extends GetxController {
   UserServices get _userServices => Get.find<UserServices>();
 
-  List<UserModel>? _userModel;
-  List<UserModel> get userModel => _userModel ?? [];
+  List<UserModel>? userModel;
 
   @override
   onReady() {
@@ -15,7 +14,7 @@ class ContactsListPageController extends GetxController {
   }
 
   onRefresh() async {
-    _userModel = await _userServices.getUserJson();
+    userModel = await _userServices.getUserJson();
     update();
   }
 }

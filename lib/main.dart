@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/services/user_services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Get.putAsync(() => SharedPreferences.getInstance());
   Get.put(UserServices());
 
   runApp(const MyApp());
