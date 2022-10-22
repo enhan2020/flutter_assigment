@@ -11,6 +11,7 @@ class EditContactPage extends StatelessWidget {
     return GetBuilder<EditContactPageController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white12,
           leading: InkWell(
             onTap: () => Get.back(),
             child: Text(
