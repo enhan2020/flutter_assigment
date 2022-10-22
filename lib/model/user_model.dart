@@ -14,18 +14,18 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    final id = json["id"] as String;
-    final firstName = json["firstName"] as String;
-    final lastName = json["lastName"] as String;
-    final email = json["email"] as String;
-    final phone = json["phone"] as String;
+    final id = json["id"] as String?;
+    final firstName = json["firstName"] as String?;
+    final lastName = json["lastName"] as String?;
+    final email = json["email"] as String?;
+    final phone = json["phone"] as String?;
 
     return UserModel(
-      id: id,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phone: phone,
+      id: id ?? '',
+      firstName: firstName ?? '',
+      lastName: lastName ?? '',
+      email: email ?? '',
+      phone: phone ?? '',
     );
   }
 
@@ -48,4 +48,7 @@ class UserModel {
       phone: phone ?? this.phone,
     );
   }
+
+  @override
+  String toString() => toJson().toString();
 }
