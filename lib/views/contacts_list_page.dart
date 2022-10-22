@@ -43,7 +43,7 @@ class ContactsListPage extends StatelessWidget {
 }
 
 class ContactItem extends StatelessWidget {
-  final UserModel? user;
+  final UserModel user;
 
   const ContactItem({Key? key, required this.user}) : super(key: key);
 
@@ -61,7 +61,7 @@ class ContactItem extends StatelessWidget {
                   backgroundColor: Theme.of(context).primaryColor,
                 ),
                 const SizedBox(width: 10),
-                Text("${user?.firstName} ${user?.lastName}"),
+                Text("${user.firstName} ${user.lastName}"),
               ],
             ),
             const Divider(thickness: 1),

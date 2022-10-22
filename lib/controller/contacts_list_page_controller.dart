@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class ContactsListPageController extends GetxController {
   UserServices get _userServices => Get.find<UserServices>();
 
-  List<UserModel?>? userModel;
+  List<UserModel>? userModel;
 
   @override
   onReady() {

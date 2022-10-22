@@ -11,28 +11,37 @@ class EditContactPage extends StatelessWidget {
     return GetBuilder<EditContactPageController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white12,
+          backgroundColor: Colors.white,
           leading: InkWell(
             onTap: () => Get.back(),
-            child: Text(
-              "Cancel",
-              style: TextStyle(color: Theme.of(context).primaryColor),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
+              ),
             ),
           ),
           actions: [
             InkWell(
               onTap: () => controller.onSave(),
-              child: Text(
-                "Save",
-                style: TextStyle(color: Theme.of(context).primaryColor),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Text(
+                    "Save",
+                    style: TextStyle(color: Theme.of(context).primaryColor),
+                  ),
+                ),
               ),
             ),
           ],
         ),
         body: Form(
           key: controller.formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: ListView(
             children: [
               Padding(
                 padding: const EdgeInsets.all(10),
