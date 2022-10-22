@@ -8,13 +8,19 @@ class ContactsListPageController extends GetxController {
   List<UserModel>? userModel;
 
   @override
-  onReady() {
-    super.onReady();
-    onRefresh();
+  void onInit() async {
+    super.onInit();
+    userModel = await _userServices.getDataFromLocal();
   }
 
   onRefresh() async {
-    userModel = await _userServices.getUserJson();
+    final initialData = await _userServices.getUserJson();
+    await _userServices.saveDataToLocal(initialData);
+    updateList();
+  }
+
+  updateList() async {
+    userModel = await _userServices.getDataFromLocal();
     update();
   }
 }

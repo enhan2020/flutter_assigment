@@ -2,8 +2,8 @@ class UserModel {
   final String id;
   final String firstName;
   final String lastName;
-  final String email;
-  final String phone;
+  final String? email;
+  final String? phone;
 
   UserModel({
     required this.id,
@@ -14,23 +14,29 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    final id = json["id"] as String?;
-    final firstName = json["firstName"] as String?;
-    final lastName = json["lastName"] as String?;
+    final id = json["id"] as String;
+    final firstName = json["firstName"] as String;
+    final lastName = json["lastName"] as String;
     final email = json["email"] as String?;
     final phone = json["phone"] as String?;
 
     return UserModel(
-      id: id ?? '',
-      firstName: firstName ?? '',
-      lastName: lastName ?? '',
-      email: email ?? '',
-      phone: phone ?? '',
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
     );
   }
 
-  toJson() {
-    return {"id": id, "firstName": firstName, "lastName": lastName, "email": email, "phone": phone};
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "firstName": firstName,
+      "lastName": lastName,
+      if (email != null) "email": email,
+      if (phone != null) "phone": phone,
+    };
   }
 
   UserModel copyWith({

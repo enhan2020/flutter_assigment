@@ -14,6 +14,7 @@ class ContactsListPage extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
+            centerTitle: true,
             title: const Text("Contacts", style: TextStyle(color: Colors.black)),
             backgroundColor: Colors.white70,
             leading: Icon(

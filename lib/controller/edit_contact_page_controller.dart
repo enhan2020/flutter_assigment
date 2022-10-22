@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/controller/contacts_list_page_controller.dart';
 import 'package:flutter_assignment/routes/arguments.dart';
+import 'package:flutter_assignment/services/user_services.dart';
 import 'package:get/get.dart';
 
 class EditContactPageController extends GetxController {
   ContactsListPageController get _contactsListPageController => Get.find<ContactsListPageController>();
+  UserServices get _userServices => Get.find<UserServices>();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController firstName = TextEditingController();
@@ -22,8 +24,8 @@ class EditContactPageController extends GetxController {
     if (_argument != null) {
       firstName.text = _argument!.user.firstName;
       lastName.text = _argument!.user.lastName;
-      email.text = _argument!.user.email;
-      phone.text = _argument!.user.phone;
+      email.text = _argument!.user.email ?? '';
+      phone.text = _argument!.user.phone ?? '';
     }
   }
 
@@ -38,9 +40,9 @@ class EditContactPageController extends GetxController {
         email: email.text,
       );
 
-      _contactsListPageController.userModel = userModelList;
+      _userServices.saveDataToLocal(userModelList);
       Get.back();
-      _contactsListPageController.update();
+      _contactsListPageController.updateList();
     }
   }
 }
