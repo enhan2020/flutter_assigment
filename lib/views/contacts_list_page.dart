@@ -22,9 +22,12 @@ class ContactsListPage extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
             actions: [
-              Icon(
-                Icons.add,
-                color: Theme.of(context).primaryColor,
+              InkWell(
+                onTap: () => Get.toNamed(AppRoutes.editContactPage),
+                child: Icon(
+                  Icons.add,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ],
           ),
