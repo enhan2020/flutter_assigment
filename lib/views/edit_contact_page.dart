@@ -65,6 +65,7 @@ class EditContactPage extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       controller: controller.firstName,
+                      textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -90,6 +91,7 @@ class EditContactPage extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       controller: controller.lastName,
+                      textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -123,6 +125,7 @@ class EditContactPage extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       controller: controller.email,
+                      textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -142,6 +145,7 @@ class EditContactPage extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       controller: controller.phone,
+                      textInputAction: TextInputAction.done,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
