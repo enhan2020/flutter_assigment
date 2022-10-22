@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/controller/contacts_list_page_controller.dart';
 import 'package:flutter_assignment/model/user_model.dart';
+import 'package:flutter_assignment/routes/app_routes.dart';
+import 'package:flutter_assignment/routes/arguments.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ContactsListPage extends StatelessWidget {
@@ -12,7 +15,7 @@ class ContactsListPage extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text("Contracts", style: TextStyle(color: Colors.black)),
+            title: const Text("Contacts", style: TextStyle(color: Colors.black)),
             backgroundColor: Colors.white70,
             leading: Icon(
               Icons.search,
@@ -44,21 +47,24 @@ class ContactItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: Theme.of(context).primaryColor,
-              ),
-              const SizedBox(width: 10),
-              Text("${user.firstName} ${user.lastName}"),
-            ],
-          ),
-          const Divider(thickness: 1),
-        ],
+    return InkWell(
+      onTap: () => Get.toNamed(AppRoutes.editContactPage, arguments: EditContactArgument(user)),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Theme.of(context).primaryColor,
+                ),
+                const SizedBox(width: 10),
+                Text("${user.firstName} ${user.lastName}"),
+              ],
+            ),
+            const Divider(thickness: 1),
+          ],
+        ),
       ),
     );
   }
