@@ -4,7 +4,6 @@ import 'package:flutter_assignment/model/user_model.dart';
 import 'package:flutter_assignment/routes/app_routes.dart';
 import 'package:flutter_assignment/routes/arguments.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ContactsListPage extends StatelessWidget {
   const ContactsListPage({Key? key}) : super(key: key);
@@ -28,11 +27,14 @@ class ContactsListPage extends StatelessWidget {
               ),
             ],
           ),
-          body: ListView.builder(
-            itemCount: controller.userModel?.length ?? 0,
-            itemBuilder: (context, index) {
-              return ContactItem(user: controller.userModel![index]);
-            },
+          body: RefreshIndicator(
+            onRefresh: () => controller.onRefresh(),
+            child: ListView.builder(
+              itemCount: controller.userModel?.length ?? 0,
+              itemBuilder: (context, index) {
+                return ContactItem(user: controller.userModel![index]);
+              },
+            ),
           ),
         );
       },
